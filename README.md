@@ -7,7 +7,7 @@
    />
     <img src="https://img.shields.io/github/license/ndrscalia/ascii-art" />
     <img src="https://img.shields.io/github/stars/ndrscalia/ascii-art?style=social" />
-    <a href="https://asciify.readthedocs.io"><img src="https://img.shields.io/badge/docs-read%20the%20docs-blue" /></a>
+    <a href="https://asciify-them.readthedocs.io/en/latest/"><img src="https://img.shields.io/badge/docs-read%20the%20docs-blue" /></a>
   </p>
 
 This package allows you to turn images (only `.jpg` and `.png` tested) into ASCII art drawings.<br/>
