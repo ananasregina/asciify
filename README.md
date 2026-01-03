@@ -124,6 +124,12 @@ if edges_detection:
 else:
     return renderer.draw_in_ascii(img_hsv=img_hsv)
 ```
+# Examples
+<p align="center">
+    <img src="./cover_photos/side_by_side.jpg" alt="Example photo" />
+    <br/>
+    </p>
+
 # Testing
 To test the codebase check `tests/README.md`.
 
