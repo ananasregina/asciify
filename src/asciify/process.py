@@ -114,12 +114,13 @@ class ImgProcessor:
         m, n, _ = self.image.shape
 
         if keep_aspect_ratio:
-            img = np.zeros((m // f, n // f, 3), dtype=np.uint8)
+            width_factor = max(1, f // 2)
+            img = np.zeros((m // f, n // width_factor, 3), dtype=np.uint8)
 
             for i in range(0, m, f):
-                for j in range(0, n, f):
+                for j in range(0, n, width_factor):
                     try:
-                        img[i // f][j // f] = self.image[i][j]
+                        img[i // f][j // width_factor] = self.image[i][j]
                     except IndexError:
                         pass
 
