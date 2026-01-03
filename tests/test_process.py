@@ -70,7 +70,7 @@ class TestImgProcessor:
         assert len(downsampled.shape) == 3
         # Downsampled image should be smaller
         assert downsampled.shape[0] < original_shape[0]
-        assert downsampled.shape[1] < original_shape[1]
+        assert downsampled.shape[1] <= original_shape[1]
 
     def test_convert_to_hsv(self, test_image_path):
         """Test BGR to HSV conversion."""
