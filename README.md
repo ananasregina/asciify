@@ -126,7 +126,7 @@ else:
 ```
 # Examples
 <p align="center">
-    <img src=".https://raw.githubusercontent.com/ndrscalia/asciify-them/main/cover_photos/side_by_side.jpg" alt="Example photo" />
+    <img src="https://raw.githubusercontent.com/ndrscalia/asciify-them/main/cover_photos/side_by_side.jpg" alt="Example photo" />
     <br/>
     </p>
 
