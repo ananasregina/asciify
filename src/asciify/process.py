@@ -27,10 +27,15 @@ class ImgProcessor:
         :rtype: tuple[int, int]
         """
         try:
-            with open("/dev/tty") as tty:
-                t_size = os.get_terminal_size(tty.fileno())
-                t_height = t_size.lines
-                t_width = t_size.columns
+            if os.name != "nt":
+                with open("/dev/tty") as tty:
+                    t_size = os.get_terminal_size(tty.fileno())
+            else:
+                import shutil
+                t_size = shutil.get_terminal_size()
+
+            t_height = t_size.lines
+            t_width = t_size.columns
         except (OSError, IOError):
             raise RuntimeError("Impossible to get terminal size! Good luck!")
 
