@@ -144,6 +144,14 @@ else:
 # Testing
 To test the codebase check `tests/README.md`.
 
+# Changelog
+- 1.0.2
+    - Windows fix to get terminal size even when stdout is not the terminal.
+- 1.0.1
+    - Improved width factor for better aspect-ratio's protection.
+- 1.0.0
+    - First working version.
+
 # Future updates and possible contributions
 - Allow custom charset with different number of characters;
 - Allow tuning brightness for better piping to ansee;
