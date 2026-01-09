@@ -1,3 +1,4 @@
+import math
 import os
 
 import cv2
@@ -62,6 +63,7 @@ class ImgProcessor:
         term_width: int,
         keep_aspect_ratio=True,
         f_type="in_terminal",
+        aspect_ratio_correction: float = 1.10,
     ):
         """
         Calculate downsample factor according to different needs. Refer to the README.md for the different ``f_type`` values.
@@ -74,6 +76,8 @@ class ImgProcessor:
         :type keep_aspect_ratio: bool
         :param f_type: Provide the different kinds of downsampling factors available.
         :type f_type: str
+        :param aspect_ratio_correction: Factor by which horizontal stretch can be limited to better estimate font aspect ratio in terminal.
+        :type aspect_ratio_correction: float
         :return: Single factor if ``keep_aspect_ratio=True``, tuple of two factors if ``keep_aspect_ratio=False``
         :rtype: int or tuple[int, int]
 
@@ -84,7 +88,11 @@ class ImgProcessor:
 
         if keep_aspect_ratio:
             if f_type == "in_terminal":
-                f = max(1, m // term_height)
+                font_aspect_ratio = get_font_aspect_ratio() / aspect_ratio_correction
+                f_height = max(1, m // term_height)
+                f_width = max(1, math.ceil(n * font_aspect_ratio / term_width))
+
+                f = max(1, f_height, f_width)
 
             elif f_type == "tall":
                 f = max(1, m // term_width)

@@ -36,6 +36,7 @@ def asciify(
         term_width=term_width,
         keep_aspect_ratio=keep_aspect_ratio,
         f_type=f_type,
+        aspect_ratio_correction=aspect_ratio_correction,
     )
     ds_img = processor.downsample_image(f=ds_f, aspect_ratio_correction=aspect_ratio_correction, keep_aspect_ratio=keep_aspect_ratio)
     img_hsv = processor.convert_to_hsv(image=ds_img)
