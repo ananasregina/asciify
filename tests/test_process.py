@@ -1,6 +1,7 @@
 """Tests for ImgProcessor class."""
-import pytest
 import numpy as np
+import pytest
+
 from asciify import ImgProcessor
 
 

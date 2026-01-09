@@ -1,7 +1,8 @@
 """Tests for Renderer class."""
-import pytest
 import numpy as np
-from asciify import Renderer, DEFAULT_CHARSET
+import pytest
+
+from asciify import DEFAULT_CHARSET, Renderer
 
 
 class TestRenderer:

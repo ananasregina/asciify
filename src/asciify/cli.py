@@ -88,7 +88,16 @@ def main():
         "--output",
         type=str,
         action="store",
-        help="Provide the output's path. If not specified, uses stdout",
+        help="Provide the output's path. If the flag is not used, default to stdout",
+    )
+
+    parser.add_argument(
+        "-A",
+        "--aspect_ratio_correction",
+        type=float,
+        action="store",
+        default=1.10,
+        help="Aspect ratio correction (default to 1.10)",
     )
 
     args = parser.parse_args()
@@ -105,6 +114,7 @@ def main():
         "edges_detection": args.edges,
         "f_type": "in_terminal" if not args.factor_type else args.factor_type,
         "keep_aspect_ratio": args.no_aspect_ratio,
+        "aspect_ratio_correction": args.aspect_ratio_correction
     }
 
     if args.width is not None:

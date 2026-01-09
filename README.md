@@ -62,6 +62,8 @@ The following options are available:
 - `ct, --canny_threshold`: Provide edges detection threshold as a tuple. For more details refer to the docs for `cv2.Canny`.
 - `-at, --angles_threshold`: Provide kernel size for angles calculation as an integer.
 - `-o, --output`: Provide the output's path. If not specified, uses stdout (e.g.: terminal).
+- `-A, --aspect_ratio_correction`: Provide the value by witch to divide the terminal's detected aspect ratio to account for line spacing.
+
 ### Details
 The different factors available are meant for different scenarios:
 - `in_terminal` allows to keep the output inside the terminal keeping aspect ratio;
@@ -70,7 +72,7 @@ The different factors available are meant for different scenarios:
 If aspect ratio's protection is disabled, output will be squished by a factor to stay in the terminal.
 ## Python library
 This package can also be used as a python library. Most of the API is exposed to the user, but a convenient wrapper is also available for simpler use cases.
-```
+```python
 from asciify import asciify
 
 # Minimal use
@@ -82,7 +84,8 @@ result = asciify(
     "path/to/image",
     color_mode="bw",
     edges_detection=True,
-    f_type="tall"
+    f_type="tall",
+    aspect_ratio_correction=1.20
 )
 
 with open("output.txt", "w") as f:
@@ -90,7 +93,7 @@ with open("output.txt", "w") as f:
 ```
 The `.txt` output can be used with `ansee` to get a `.png` file out of it.<br/>
 If needed, the core classes can be used as follows:
-```
+```python
 from asciify import ImgeProcessor, Renderer, DEFAULT_CHARSET
 
 processor = ImgProcessor(image_path)
@@ -109,7 +112,8 @@ ds_f = processor.calculate_downsample_factor(
 
 ds_img = processor.downsample_image(
     f=ds_f,
-    keep_aspect_ratio=keep_aspect_ratio
+    keep_aspect_ratio=keep_aspect_ratio,
+    aspect_ratio_correction=1.10
 )
 
 img_hsv = processor.convert_to_hsv(image=ds_img)
@@ -145,6 +149,8 @@ else:
 To test the codebase check `tests/README.md`.
 
 # Changelog
+- 1.0.3
+    - Add aspect ratio correction flag to account for line spacing.
 - 1.0.2
     - Windows fix to get terminal size even when stdout is not the terminal.
 - 1.0.1

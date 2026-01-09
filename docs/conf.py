@@ -10,6 +10,7 @@ project = 'asciify'
 author = 'Andrea Scalia'
 
 from datetime import datetime
+
 year = datetime.now().year
 if year > 2026:
     copyright = f"2026-{year}, {author}"
@@ -17,8 +18,10 @@ else:
     copyright = f"2026, {author}"
 
 import sys
+
 sys.path.append("../src")
 import asciify
+
 release = asciify.__version__
 
 # -- General configuration ---------------------------------------------------

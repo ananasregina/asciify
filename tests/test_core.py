@@ -1,7 +1,9 @@
 """Tests for core.asciify() function."""
-import pytest
-from asciify import asciify
 from pathlib import Path
+
+import pytest
+
+from asciify import asciify
 
 
 class TestAsciify:

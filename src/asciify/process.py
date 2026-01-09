@@ -3,6 +3,8 @@ import os
 import cv2
 import numpy as np
 
+from .utils import get_font_aspect_ratio
+
 
 class ImgProcessor:
     """
@@ -105,12 +107,14 @@ class ImgProcessor:
 
             return f
 
-    def downsample_image(self, f: int, keep_aspect_ratio=True):
+    def downsample_image(self, f: int, aspect_ratio_correction: float = 1.10, keep_aspect_ratio=True):
         """
         Downsample the input image.
 
         :param f: The downsampling factor obtained with :func:`calculate_downsample_factor`.
         :type f: int or tuple[int, int]
+        :param aspect_ratio_correction: Factor by which horizontal stretch can be limited to better estimate font aspect ratio in terminal.
+        :type aspect_ratio_correction: float
         :param keep_aspect_ratio: Choose wether to preserve or not original aspect ratio. It must be set to the same value as it was in :func:`calculate_downsample_factor`.
         :return: The downsampled image.
         :rtype: np.ndarray
@@ -119,7 +123,8 @@ class ImgProcessor:
         m, n, _ = self.image.shape
 
         if keep_aspect_ratio:
-            width_factor = max(1, f // 2)
+            aspect_ratio = get_font_aspect_ratio() / aspect_ratio_correction
+            width_factor = max(1, int(f / aspect_ratio))
             img = np.zeros((m // f, n // width_factor, 3), dtype=np.uint8)
 
             for i in range(0, m, f):
