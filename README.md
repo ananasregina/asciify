@@ -92,7 +92,63 @@ with open("output.txt", "w") as f:
     f.write(result)
 ```
 The `.txt` output can be used with `ansee` to get a `.png` file out of it.<br/>
+
+# MCP Server
+This fork includes an **MCP (Model Context Protocol)** server, allowing you to use `asciify-them` as a tool within MCP-compatible clients like **Claude Desktop**.
+
+## Installation
+To use the MCP server, you'll need to install the package with the `mcp` extra:
+
+```bash
+pip install "asciify-them[mcp]"
+```
+
+Or if you are using `uv`:
+
+```bash
+uv pip install "asciify-them[mcp]"
+```
+
+## Configuration (Claude Desktop)
+To add `asciify-them` to Claude Desktop, add the following to your `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "asciify": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/absolute/path/to/asciify-them",
+        "run",
+        "asciify-mcp"
+      ]
+    }
+  }
+}
+```
+
+> [!NOTE]
+> Replace `/absolute/path/to/asciify-them` with the actual path where you cloned this repository.
+
+## Available Tools
+### `asciify_image`
+Generates ASCII art from an image and saves it to disk.
+
+**Arguments:**
+- `image_path` (string, required): Path to the image file.
+- `output_path` (string, optional): Path to save the generated ASCII art. Defaults to `<input_filename>_ascii.txt`.
+- `color_mode` (string, optional): "color" (default) or "grayscale".
+- `edges_detection` (boolean, optional): Whether to enable edge detection.
+- `width` (integer, optional): Custom width.
+- `height` (integer, optional): Custom height.
+- `keep_aspect_ratio` (boolean, optional): Maintain aspect ratio (default: true).
+- `f_type` (string, optional): "in_terminal" (default), "wide", or "tall".
+- `aspect_ratio_correction` (float, optional): Correction factor for character aspect ratio (default: 1.10).
+
+# Implementation Details
 If needed, the core classes can be used as follows:
+
 ```python
 from asciify import ImgProcessor, Renderer, DEFAULT_CHARSET
 
