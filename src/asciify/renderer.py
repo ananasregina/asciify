@@ -13,7 +13,11 @@ class Renderer:
     def __init__(self, color_mode="color", charset=None):
         self.color_mode = color_mode
         self.charset = charset or DEFAULT_CHARSET
-        self.drawing_function = {"color": self.draw_char_col, "bw": self.draw_char_bw}
+        self.drawing_function = {
+            "color": self.draw_char_col,
+            "bw": self.draw_char_bw,
+            "grayscale": self.draw_char_bw,
+        }
 
     def hsv_to_rgb(self, h: int, s: int, v: int):
         """

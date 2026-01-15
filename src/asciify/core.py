@@ -25,9 +25,20 @@ def asciify(
     """
 
     processor = ImgProcessor(image_path)
+    img_h, img_w, _ = processor.image.shape
 
     if not height and not width:
         term_height, term_width = processor.calculate_print_size()
+    elif width and not height:
+        term_width = width
+        from .utils import get_font_aspect_ratio
+        font_aspect_ratio = get_font_aspect_ratio() / aspect_ratio_correction
+        term_height = int((img_h / img_w) * term_width / font_aspect_ratio)
+    elif height and not width:
+        term_height = height
+        from .utils import get_font_aspect_ratio
+        font_aspect_ratio = get_font_aspect_ratio() / aspect_ratio_correction
+        term_width = int((img_w / img_h) * term_height * font_aspect_ratio)
     else:
         term_height, term_width = height, width
 

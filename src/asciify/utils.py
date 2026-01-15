@@ -42,6 +42,8 @@ def get_font_aspect_ratio():
 
             aspect_ratio = char_height / char_width
             return aspect_ratio
+        
+        return 2.0
 
     except (OSError, IOError, ZeroDivisionError):
         return 2.0

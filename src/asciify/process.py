@@ -86,6 +86,12 @@ class ImgProcessor:
 
         m, n, _ = self.image.shape
 
+        if term_height is None or term_width is None:
+            raise ValueError("term_height and term_width must be provided (not None)")
+
+        if term_height <= 0 or term_width <= 0:
+            raise ValueError("term_height and term_width must be greater than zero")
+
         if keep_aspect_ratio:
             if f_type == "in_terminal":
                 font_aspect_ratio = get_font_aspect_ratio() / aspect_ratio_correction
